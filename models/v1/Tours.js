@@ -26,10 +26,28 @@ const toursSchema = mongoose.Schema(
     image: {
       type: String,
       require: [true, "Please provide a image url"],
+      validate: {
+        validator: (value) => {
+          if (value === "") {
+            return false;
+          } else {
+            return true;
+          }
+        },
+      },
     },
     address: {
       type: String,
       require: [true, "Please provide the location address"],
+      validate: {
+        validator: (value) => {
+          if (value === "") {
+            return false;
+          } else {
+            return true;
+          }
+        },
+      },
     },
     view_count: {
       type: Number,
