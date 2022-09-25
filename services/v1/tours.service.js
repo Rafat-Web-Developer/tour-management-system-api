@@ -21,6 +21,13 @@ exports.createNewTourService = async (data) => {
   return result;
 };
 
+exports.updateSingleTourService = async (tourId, data) => {
+  const result = await Tours.updateOne({ _id: tourId }, data, {
+    runValidators: true,
+  });
+  return result;
+};
+
 exports.deleteTourService = async (tourId) => {
   const result = await Tours.deleteOne({ _id: tourId });
   return result;

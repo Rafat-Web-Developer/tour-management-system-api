@@ -34,6 +34,27 @@ exports.createNewTour = async (req, res, next) => {
   }
 };
 
+exports.updateSingleTour = async (req, res, next) => {
+  try {
+    const tour = await toursService.updateSingleTourService(
+      req.params.id,
+      req.body
+    );
+
+    if (!tour.modifiedCount) {
+      return next(new HttpErrors("This tour is not update"));
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Tour updated successfully",
+      data: tour,
+    });
+  } catch (error) {
+    next(new HttpErrors(error.message, 400));
+  }
+};
+
 exports.deleteTour = async (req, res, next) => {
   try {
     const result = await toursService.deleteTourService(req.params.id);
