@@ -17,12 +17,12 @@ exports.getSingleTourService = async (tourId) => {
 };
 
 exports.getTopViewToursService = async () => {
-  const result = await Tours.find();
+  const result = await Tours.find().sort("-view_count").limit(3);
   return result;
 };
 
 exports.getTopCheapestToursService = async () => {
-  const result = await Tours.find();
+  const result = await Tours.find().sort("total_cost").limit(3);
   return result;
 };
 
