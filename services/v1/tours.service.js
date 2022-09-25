@@ -16,6 +16,16 @@ exports.getSingleTourService = async (tourId) => {
   return result;
 };
 
+exports.getTopViewToursService = async () => {
+  const result = await Tours.find();
+  return result;
+};
+
+exports.getTopCheapestToursService = async () => {
+  const result = await Tours.find();
+  return result;
+};
+
 exports.createNewTourService = async (data) => {
   const result = await Tours.create(data);
   return result;

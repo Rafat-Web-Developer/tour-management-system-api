@@ -20,6 +20,32 @@ exports.getSingleTour = async (req, res, next) => {
   }
 };
 
+exports.getTopViewTours = async (req, res, next) => {
+  try {
+    const tours = await toursService.getTopViewToursService();
+
+    res.status(200).json({
+      success: true,
+      data: tours,
+    });
+  } catch (error) {
+    next(new HttpErrors(error.message, 400));
+  }
+};
+
+exports.getTopCheapestTours = async (req, res, next) => {
+  try {
+    const tours = await toursService.getTopCheapestToursService();
+
+    res.status(200).json({
+      success: true,
+      data: tours,
+    });
+  } catch (error) {
+    next(new HttpErrors(error.message, 400));
+  }
+};
+
 exports.createNewTour = async (req, res, next) => {
   try {
     const tour = await toursService.createNewTourService(req.body);
