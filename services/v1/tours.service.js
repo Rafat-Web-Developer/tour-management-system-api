@@ -5,12 +5,23 @@ exports.getAllToursService = async () => {
   return result;
 };
 
+exports.getSingleTourService = async (tourId) => {
+  const result = await Tours.findByIdAndUpdate(
+    tourId,
+    {
+      $inc: { view_count: 1 },
+    },
+    { new: true }
+  );
+  return result;
+};
+
 exports.createNewTourService = async (data) => {
   const result = await Tours.create(data);
   return result;
 };
 
-exports.deleteTourService = async (id) => {
-  const result = await Tours.deleteOne({ _id: id });
+exports.deleteTourService = async (tourId) => {
+  const result = await Tours.deleteOne({ _id: tourId });
   return result;
 };

@@ -8,6 +8,9 @@ router
   .get(toursController.getAllTours)
   .post(toursController.createNewTour);
 
-router.route("/:id").delete(toursController.deleteTour);
+router
+  .route("/:id")
+  .get(toursController.getSingleTour)
+  .delete(toursController.deleteTour);
 
 module.exports = router;

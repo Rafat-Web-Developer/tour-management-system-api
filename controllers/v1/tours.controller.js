@@ -10,6 +10,16 @@ exports.getAllTours = async (req, res, next) => {
   }
 };
 
+exports.getSingleTour = async (req, res, next) => {
+  try {
+    const tour = await toursService.getSingleTourService(req.params.id);
+
+    res.status(200).json({ success: true, data: tour });
+  } catch (error) {
+    next(new HttpErrors(error.message, 400));
+  }
+};
+
 exports.createNewTour = async (req, res, next) => {
   try {
     const tour = await toursService.createNewTourService(req.body);
