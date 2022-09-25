@@ -1,7 +1,13 @@
 const Tours = require("../../models/v1/Tours");
 
-exports.getAllToursService = async () => {
-  const result = await Tours.find();
+exports.getAllToursService = async (filters, queries) => {
+  // console.log(queries);
+  const result = await Tours.find(filters)
+    .skip(queries.skip)
+    .limit(queries.limit)
+    .select(queries.fields)
+    .sort(queries.sortBy);
+
   return result;
 };
 
